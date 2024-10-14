@@ -10,7 +10,7 @@ namespace BusinessCentralAPI
 {
     class Program
     {
-        // Constants for Azure AD authentication
+         
         //Below details will be availabie in the App registered  in Azure portal
         private const string tenantId = "your-tenant-id";    // Azure AD Tenant ID
         private const string clientId = "your-client-id";    // Azure AD App Client ID
@@ -18,7 +18,7 @@ namespace BusinessCentralAPI
         private const string authority = $"https://login.microsoftonline.com/{tenantId}";
         private const string scope = "https://api.businesscentral.dynamics.com/.default";
 
-        // Business Central API URL (v2.0 for production environments)
+        // Find the environment value from Business central
         private const string businessCentralApiUrl = "https://api.businesscentral.dynamics.com/v2.0/{environment}/api/v2.0/contacts";
 
         static async Task Main(string[] args)
@@ -28,10 +28,10 @@ namespace BusinessCentralAPI
                 // Get the access token using Azure AD authentication
                 string token = await GetAccessTokenAsync();
 
-                // Make an HTTP request to fetch contacts from Business Central
+                // Stores the contacts details in below variable
                 var contacts = await GetContactsFromBusinessCentralAsync(token);
 
-                // Process or display the contacts
+                // To write the contacts details
                 Console.WriteLine(JsonConvert.SerializeObject(contacts, Formatting.Indented));
             }
             catch (Exception ex)
@@ -40,7 +40,7 @@ namespace BusinessCentralAPI
             }
         }
 
-        // Method to get access token using Microsoft.Identity.Client (MSAL)
+        // Get access token
         private static async Task<string> GetAccessTokenAsync()
         {
             var app = ConfidentialClientApplicationBuilder.Create(clientId)
@@ -54,22 +54,22 @@ namespace BusinessCentralAPI
             return result.AccessToken;
         }
 
-        // Method to fetch contacts from Business Central API
+        // Read contacts from Business Central 
         private static async Task<dynamic> GetContactsFromBusinessCentralAsync(string accessToken)
         {
             using (var client = new HttpClient())
             {
-                // Add Authorization header with the token
+                // Add Authorization  token
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
-                // Make GET request to the Business Central API
+           
                 var response = await client.GetAsync(businessCentralApiUrl);
                 if (response.IsSuccessStatusCode)
                 {
-                    // Read response content as a JSON string
+                    // Store contacts in Json
                     var jsonResponse = await response.Content.ReadAsStringAsync();
 
-                    // Deserialize JSON response to dynamic object
+                   
                     return JsonConvert.DeserializeObject(jsonResponse);
                 }
                 else
