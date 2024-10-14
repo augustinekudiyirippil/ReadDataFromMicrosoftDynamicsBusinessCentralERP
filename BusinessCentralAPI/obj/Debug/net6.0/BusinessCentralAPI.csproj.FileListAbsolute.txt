@@ -1,0 +1,15 @@
+D:\Augustine\BusinessCentralAPI\BusinessCentralAPI\bin\Debug\net6.0\BusinessCentralAPI.exe
+D:\Augustine\BusinessCentralAPI\BusinessCentralAPI\bin\Debug\net6.0\BusinessCentralAPI.deps.json
+D:\Augustine\BusinessCentralAPI\BusinessCentralAPI\bin\Debug\net6.0\BusinessCentralAPI.runtimeconfig.json
+D:\Augustine\BusinessCentralAPI\BusinessCentralAPI\bin\Debug\net6.0\BusinessCentralAPI.dll
+D:\Augustine\BusinessCentralAPI\BusinessCentralAPI\bin\Debug\net6.0\BusinessCentralAPI.pdb
+D:\Augustine\BusinessCentralAPI\BusinessCentralAPI\obj\Debug\net6.0\BusinessCentralAPI.csproj.AssemblyReference.cache
+D:\Augustine\BusinessCentralAPI\BusinessCentralAPI\obj\Debug\net6.0\BusinessCentralAPI.GeneratedMSBuildEditorConfig.editorconfig
+D:\Augustine\BusinessCentralAPI\BusinessCentralAPI\obj\Debug\net6.0\BusinessCentralAPI.AssemblyInfoInputs.cache
+D:\Augustine\BusinessCentralAPI\BusinessCentralAPI\obj\Debug\net6.0\BusinessCentralAPI.AssemblyInfo.cs
+D:\Augustine\BusinessCentralAPI\BusinessCentralAPI\obj\Debug\net6.0\BusinessCentralAPI.csproj.CoreCompileInputs.cache
+D:\Augustine\BusinessCentralAPI\BusinessCentralAPI\obj\Debug\net6.0\BusinessCentralAPI.dll
+D:\Augustine\BusinessCentralAPI\BusinessCentralAPI\obj\Debug\net6.0\refint\BusinessCentralAPI.dll
+D:\Augustine\BusinessCentralAPI\BusinessCentralAPI\obj\Debug\net6.0\BusinessCentralAPI.pdb
+D:\Augustine\BusinessCentralAPI\BusinessCentralAPI\obj\Debug\net6.0\BusinessCentralAPI.genruntimeconfig.cache
+D:\Augustine\BusinessCentralAPI\BusinessCentralAPI\obj\Debug\net6.0\ref\BusinessCentralAPI.dll
