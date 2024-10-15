@@ -5,13 +5,16 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
 using Microsoft.Identity.Client;
+using Newtonsoft.Json.Linq;
+using System.Text.Json;
 
 namespace BusinessCentralAPI
 {
     class Program
     {
-         
+
         //Below details will be availabie in the App registered  in Azure portal
+
         private const string tenantId = " ";    // Azure AD Tenant ID
         private const string clientId = " ";    // Azure AD App Client ID
         private const string clientSecret = " ";  // Azure AD App Client Secret
@@ -21,22 +24,59 @@ namespace BusinessCentralAPI
         private const string businesscentralid = " ";  //GUID from Business central ERP , you will get it from the URL
 
 
-        // Find the environment value from Business central
-        
 
-        private const string businessCentralApiUrl = $"https://api.businesscentral.dynamics.com/v2.0/{businesscentralid}/{environement}/api/v2.0/companies";
+
+
+
+        private const string bcCompaniesApiUrl = $"https://api.businesscentral.dynamics.com/v2.0/{businesscentralid}/{environement}/api/v2.0/companies";
+
+        
         static async Task Main(string[] args)
         {
+
+            string bcContactApiUrl = "URL to read contacts ";
+            string companyID;
             try
             {
                 // Get the access token using Azure AD authentication
                 string token = await GetAccessTokenAsync();
 
                 // Stores the contacts details in below variable
-                var contacts = await GetContactsFromBusinessCentralAsync(token);
+                var companies = await GetDataFromBusinessCentralAsync(token, bcCompaniesApiUrl, "Companies");
+                Console.WriteLine(companies);
 
-                // To write the contacts details
-                Console.WriteLine(JsonConvert.SerializeObject(contacts, Formatting.Indented));
+                string jsonString = @""+companies;
+
+                var jsonObject = JsonConvert.DeserializeObject<JObject>(jsonString);
+
+                // Extract the value array
+                companies = jsonObject["value"];
+
+                // List to hold extracted IDs
+                List<string> idcompanyIds = new List<string>();
+
+                // Iterate through each company and extract the ID
+                foreach (var company in companies)
+                {
+                    string id = company["id"].ToString();
+                    idcompanyIds.Add(id);
+                }
+
+                // Output the extracted IDs
+                 
+                foreach (var companyId in idcompanyIds)
+                {
+                   
+
+                    bcContactApiUrl = $"https://api.businesscentral.dynamics.com/v2.0/{businesscentralid}/{environement}/api/v2.0/companies({companyId})/contacts";
+                    var companyContacts = await GetDataFromBusinessCentralAsync(token, bcContactApiUrl, "Company Contacts");
+                    Console.WriteLine(companyContacts);
+
+
+                }
+
+
+
             }
             catch (Exception ex)
             {
@@ -59,7 +99,7 @@ namespace BusinessCentralAPI
         }
 
         // Read contacts from Business Central 
-        private static async Task<dynamic> GetContactsFromBusinessCentralAsync(string accessToken)
+        private static async Task<dynamic> GetDataFromBusinessCentralAsync(string accessToken, string apiURL, string dataToRetreive)
         {
             using (var client = new HttpClient())
             {
@@ -67,7 +107,7 @@ namespace BusinessCentralAPI
                 client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
            
-                var response = await client.GetAsync(businessCentralApiUrl);
+                var response = await client.GetAsync(apiURL);
                 if (response.IsSuccessStatusCode)
                 {
                     // Store contacts in Json
@@ -78,7 +118,7 @@ namespace BusinessCentralAPI
                 }
                 else
                 {
-                    throw new Exception($"Failed to retrieve contacts. Status code: {response.StatusCode}");
+                    throw new Exception($"Failed to retrieve {dataToRetreive}. Status code: {response.StatusCode}");
                 }
             }
         }
