@@ -12,15 +12,19 @@ namespace BusinessCentralAPI
     {
          
         //Below details will be availabie in the App registered  in Azure portal
-        private const string tenantId = "your-tenant-id";    // Azure AD Tenant ID
-        private const string clientId = "your-client-id";    // Azure AD App Client ID
-        private const string clientSecret = "your-client-secret";  // Azure AD App Client Secret
+        private const string tenantId = " ";    // Azure AD Tenant ID
+        private const string clientId = " ";    // Azure AD App Client ID
+        private const string clientSecret = " ";  // Azure AD App Client Secret
         private const string authority = $"https://login.microsoftonline.com/{tenantId}";
         private const string scope = "https://api.businesscentral.dynamics.com/.default";
+        private const string environement = " ";  //Environment name from Business central ERP
+        private const string businesscentralid = " ";  //GUID from Business central ERP , you will get it from the URL
+
 
         // Find the environment value from Business central
-        private const string businessCentralApiUrl = "https://api.businesscentral.dynamics.com/v2.0/{environment}/api/v2.0/contacts";
+        
 
+        private const string businessCentralApiUrl = $"https://api.businesscentral.dynamics.com/v2.0/{businesscentralid}/{environement}/api/v2.0/companies";
         static async Task Main(string[] args)
         {
             try

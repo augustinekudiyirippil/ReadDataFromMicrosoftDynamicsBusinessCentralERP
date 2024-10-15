@@ -13,3 +13,8 @@ D:\Augustine\BusinessCentralAPI\BusinessCentralAPI\obj\Debug\net6.0\refint\Busin
 D:\Augustine\BusinessCentralAPI\BusinessCentralAPI\obj\Debug\net6.0\BusinessCentralAPI.pdb
 D:\Augustine\BusinessCentralAPI\BusinessCentralAPI\obj\Debug\net6.0\BusinessCentralAPI.genruntimeconfig.cache
 D:\Augustine\BusinessCentralAPI\BusinessCentralAPI\obj\Debug\net6.0\ref\BusinessCentralAPI.dll
+D:\Augustine\BusinessCentralAPI\BusinessCentralAPI\bin\Debug\net6.0\Microsoft.Identity.Client.dll
+D:\Augustine\BusinessCentralAPI\BusinessCentralAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Augustine\BusinessCentralAPI\BusinessCentralAPI\bin\Debug\net6.0\Newtonsoft.Json.dll
+D:\Augustine\BusinessCentralAPI\BusinessCentralAPI\bin\Debug\net6.0\System.Diagnostics.DiagnosticSource.dll
+D:\Augustine\BusinessCentralAPI\BusinessCentralAPI\obj\Debug\net6.0\BusinessCentralAPI.csproj.CopyComplete
