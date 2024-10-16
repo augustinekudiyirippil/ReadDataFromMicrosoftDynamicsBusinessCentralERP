@@ -15,13 +15,13 @@ namespace BusinessCentralAPI
 
         //Below details will be availabie in the App registered  in Azure portal
 
-        //private const string tenantId = " ";    // Azure AD Tenant ID
-        //private const string clientId = " ";    // Azure AD App Client ID
-        //private const string clientSecret = " ";  // Azure AD App Client Secret
-        //private const string authority = $"https://login.microsoftonline.com/{tenantId}";
-        //private const string scope = "https://api.businesscentral.dynamics.com/.default";
-        //private const string environement = " ";  //Environment name from Business central ERP
-        //private const string businesscentralid = " ";  //GUID from Business central ERP , you will get it from the URL
+        private const string tenantId = " ";    // Azure AD Tenant ID
+        private const string clientId = " ";    // Azure AD App Client ID
+        private const string clientSecret = " ";  // Azure AD App Client Secret
+        private const string authority = $"https://login.microsoftonline.com/{tenantId}";
+        private const string scope = "https://api.businesscentral.dynamics.com/.default";
+        private const string environement = " ";  //Environment name from Business central ERP
+        private const string businesscentralid = " ";  //GUID from Business central ERP , you will get it from the URL
 
 
 
