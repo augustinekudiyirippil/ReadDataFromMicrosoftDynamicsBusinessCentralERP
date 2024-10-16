@@ -15,15 +15,13 @@ namespace BusinessCentralAPI
 
         //Below details will be availabie in the App registered  in Azure portal
 
-        private const string tenantId = " ";    // Azure AD Tenant ID
-        private const string clientId = " ";    // Azure AD App Client ID
-        private const string clientSecret = " ";  // Azure AD App Client Secret
-        private const string authority = $"https://login.microsoftonline.com/{tenantId}";
-        private const string scope = "https://api.businesscentral.dynamics.com/.default";
-        private const string environement = " ";  //Environment name from Business central ERP
-        private const string businesscentralid = " ";  //GUID from Business central ERP , you will get it from the URL
-
-
+        //private const string tenantId = " ";    // Azure AD Tenant ID
+        //private const string clientId = " ";    // Azure AD App Client ID
+        //private const string clientSecret = " ";  // Azure AD App Client Secret
+        //private const string authority = $"https://login.microsoftonline.com/{tenantId}";
+        //private const string scope = "https://api.businesscentral.dynamics.com/.default";
+        //private const string environement = " ";  //Environment name from Business central ERP
+        //private const string businesscentralid = " ";  //GUID from Business central ERP , you will get it from the URL
 
 
 
@@ -52,28 +50,44 @@ namespace BusinessCentralAPI
                 // Extract the value array
                 companies = jsonObject["value"];
 
-                // List to hold extracted IDs
-                List<string> idcompanyIds = new List<string>();
 
-                // Iterate through each company and extract the ID
+                // Iterate through each company,  extract the ID and read  company details
+                string companyId;
                 foreach (var company in companies)
                 {
-                    string id = company["id"].ToString();
-                    idcompanyIds.Add(id);
+                    companyId = company["id"].ToString();
+                    bcContactApiUrl = $"https://api.businesscentral.dynamics.com/v2.0/{businesscentralid}/{environement}/api/v2.0/companies({companyId})/companyInformation";
+                    var companyInfo = await GetDataFromBusinessCentralAsync(token, bcContactApiUrl, "Company Information");
+                    Console.WriteLine(companyInfo);
+                     
                 }
 
-                // Output the extracted IDs
-                 
-                foreach (var companyId in idcompanyIds)
-                {
-                   
 
+                // Iterate through each company,  extract the ID and read  contact organisation / customers
+
+                foreach (var company in companies)
+                {
+                    companyId = company["id"].ToString();
+                    bcContactApiUrl = $"https://api.businesscentral.dynamics.com/v2.0/{businesscentralid}/{environement}/api/v2.0/companies({companyId})/customers";
+                    var customers = await GetDataFromBusinessCentralAsync(token, bcContactApiUrl, "Company Information");
+                    Console.WriteLine(customers);
+
+                }
+
+
+                // Iterate through each company,  extract the ID and read contacts from the company
+
+                foreach (var company in companies)
+                {
+                    companyId = company["id"].ToString();
                     bcContactApiUrl = $"https://api.businesscentral.dynamics.com/v2.0/{businesscentralid}/{environement}/api/v2.0/companies({companyId})/contacts";
                     var companyContacts = await GetDataFromBusinessCentralAsync(token, bcContactApiUrl, "Company Contacts");
                     Console.WriteLine(companyContacts);
-
-
+                    
                 }
+
+      
+   
 
 
 
